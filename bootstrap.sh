@@ -99,6 +99,7 @@ osx_macports()
     install_macports_pkg "pkgconfig"
     install_macports_pkg "osxfuse"
     install_macports_pkg "cmake"
+    install_macports_pkg "wget"
 }
 
 ###############################################################################
@@ -127,6 +128,7 @@ osx_homebrew()
     install_brew_pkg "pkg-config"
     install_brew_pkg "cmake"
     install_brew_cask_pkg "osxfuse"
+    install_brew_pkg "wget"
 }
 
 ###############################################################################
