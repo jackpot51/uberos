@@ -99,7 +99,6 @@ osx_macports()
     install_macports_pkg "nasm"
     install_macports_pkg "pkgconfig"
     install_macports_pkg "osxfuse"
-    install_macports_pkg "x86_64-elf-gcc"
     install_macports_pkg "cmake"
 }
 
@@ -130,8 +129,6 @@ osx_homebrew()
     install_brew_pkg "pkg-config"
     install_brew_pkg "cmake"
     install_brew_cask_pkg "osxfuse"
-
-    install_brew_pkg "redox-os/gcc_cross_compilers/x86_64-elf-gcc"
 }
 
 ###############################################################################
