@@ -129,6 +129,13 @@ osx_homebrew()
     install_brew_pkg "cmake"
     install_brew_cask_pkg "osxfuse"
     install_brew_pkg "wget"
+
+	# the gcc contrib script makes use of the unprefixed name
+	ln -sf $(brew --prefix)/bin/gsha1sum $(brew --prefix)/bin/sha1sum
+	ln -sf $(brew --prefix)/bin/gsha224sum $(brew --prefix)/bin/sha224sum
+	ln -sf $(brew --prefix)/bin/gsha256sum $(brew --prefix)/bin/sha256sum
+	ln -sf $(brew --prefix)/bin/gsha384sum $(brew --prefix)/bin/sha384sum
+	ln -sf $(brew --prefix)/bin/gsha512sum $(brew --prefix)/bin/sha512sum
 }
 
 ###############################################################################
