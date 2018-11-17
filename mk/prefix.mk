@@ -44,7 +44,7 @@ $(PREFIX)/gcc-freestanding-install: $(PREFIX)/gcc
 	mkdir -p "$<-freestanding-build" "$@"
 	cd "$<-freestanding-build" && \
 	export PATH="$(PREFIX_BINUTILS_PATH):$$PATH" && \
-	"$</configure" --target="$(TARGET)" --prefix="$@" --disable-nls --enable-languages=c,c++ --without-headers && \
+	"$</configure" --target="$(TARGET)" --prefix="$@" --disable-nls --enable-languages=c,c++ --without-headers --with-ld=$(PREFIX_BINUTILS_PATH)/$(TARGET)-ld -with-as=$(PREFIX_BINUTILS_PATH)/$(TARGET)-as && \
 	make all-gcc -j $(NPROC) && \
 	make all-target-libgcc -j $(NPROC) && \
 	make install-gcc -j $(NPROC) && \
@@ -64,7 +64,7 @@ $(PREFIX)/gcc-install: $(PREFIX)/gcc | $(PREFIX)/relibc-install
 	mkdir -p "$<-build" "$@"
 	cd "$<-build" && \
 	export PATH="$(PREFIX_FREESTANDING_PATH):$$PATH" && \
-	"$</configure" --target="$(TARGET)" --disable-werror --prefix="$@" --with-sysroot="$(PREFIX)/relibc-install" --disable-nls --enable-languages=c,c++ && \
+	"$</configure" --target="$(TARGET)" --disable-werror --prefix="$@" --with-sysroot="$(PREFIX)/relibc-install" --disable-nls --enable-languages=c,c++ --with-ld=$(PREFIX_BINUTILS_PATH)/$(TARGET)-ld -with-as=$(PREFIX_BINUTILS_PATH)/$(TARGET)-as && \
 	make all-gcc -j $(NPROC) && \
 	make all-target-libgcc -j $(NPROC) && \
 	make install-gcc -j $(NPROC) && \
