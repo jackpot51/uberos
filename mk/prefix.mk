@@ -4,6 +4,11 @@ PREFIX_BINUTILS_PATH=$(PREFIX)/binutils-install/bin
 PREFIX_FREESTANDING_PATH=$(PREFIX_BINUTILS_PATH):$(PREFIX)/gcc-freestanding-install/bin
 PREFIX_PATH=$(PREFIX_BINUTILS_PATH):$(PREFIX)/gcc-install/bin
 
+AS=$(PREFIX_BINUTILS_PATH)/$(TARGET)-as
+LD=$(PREFIX_BINUTILS_PATH)/$(TARGET)-ld
+STRIP=$(PREFIX_BINUTILS_PATH)/$(TARGET)-strip
+OBJCOPY=$(PREFIX_BINUTILS_PATH)/$(TARGET)-objcopy
+
 prefix: $(PREFIX)/gcc-install
 	touch "$@"
 
@@ -44,7 +49,7 @@ $(PREFIX)/gcc-freestanding-install: $(PREFIX)/gcc
 	mkdir -p "$<-freestanding-build" "$@"
 	cd "$<-freestanding-build" && \
 	export PATH="$(PREFIX_BINUTILS_PATH):$$PATH" && \
-	"$</configure" --target="$(TARGET)" --prefix="$@" --disable-nls --enable-languages=c,c++ --without-headers --with-ld=$(PREFIX_BINUTILS_PATH)/$(TARGET)-ld -with-as=$(PREFIX_BINUTILS_PATH)/$(TARGET)-as && \
+	"$</configure" --target="$(TARGET)" --prefix="$@" --disable-nls --enable-languages=c,c++ --without-headers --with-ld=$(LD) --with-as=$(AS) && \
 	make all-gcc -j $(NPROC) && \
 	make all-target-libgcc -j $(NPROC) && \
 	make install-gcc -j $(NPROC) && \
@@ -64,7 +69,7 @@ $(PREFIX)/gcc-install: $(PREFIX)/gcc | $(PREFIX)/relibc-install
 	mkdir -p "$<-build" "$@"
 	cd "$<-build" && \
 	export PATH="$(PREFIX_FREESTANDING_PATH):$$PATH" && \
-	"$</configure" --target="$(TARGET)" --disable-werror --prefix="$@" --with-sysroot="$(PREFIX)/relibc-install" --disable-nls --enable-languages=c,c++ --with-ld=$(PREFIX_BINUTILS_PATH)/$(TARGET)-ld -with-as=$(PREFIX_BINUTILS_PATH)/$(TARGET)-as && \
+	"$</configure" --target="$(TARGET)" --disable-werror --prefix="$@" --with-sysroot="$(PREFIX)/relibc-install" --disable-nls --enable-languages=c,c++ --with-ld=$(LD) --with-as=$(AS) && \
 	make all-gcc -j $(NPROC) && \
 	make all-target-libgcc -j $(NPROC) && \
 	make install-gcc -j $(NPROC) && \

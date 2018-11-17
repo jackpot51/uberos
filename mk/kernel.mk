@@ -6,17 +6,17 @@ build/libkernel_live.a: kernel/Cargo.toml kernel/src/* kernel/src/*/* kernel/src
 
 build/kernel: kernel/linkers/$(ARCH).ld build/libkernel.a
 	$(LD) --gc-sections -z max-page-size=0x1000 -T $< -o $@ build/libkernel.a
-	objcopy --only-keep-debug $@ $@.sym
-	objcopy --strip-debug $@
+	$(OBJCOPY) --only-keep-debug $@ $@.sym
+	$(OBJCOPY) --strip-debug $@
 
 build/kernel_live: kernel/linkers/$(ARCH).ld build/libkernel_live.a build/live.o
 	$(LD) --gc-sections -z max-page-size=0x1000 -T $< -o $@ build/libkernel_live.a build/live.o
-	objcopy --only-keep-debug $@ $@.sym
-	objcopy --strip-debug $@
+	$(OBJCOPY) --only-keep-debug $@ $@.sym
+	$(OBJCOPY) --strip-debug $@
 
 build/live.o: build/filesystem.bin
 	#TODO: More general use of $(ARCH)
-	objcopy -I binary -O elf64-x86-64 -B i386:x86-64 $< $@ \
+	$(OBJCOPY) -I binary -O elf64-x86-64 -B i386:x86-64 $< $@ \
 		--redefine-sym _binary_build_filesystem_bin_start=__live_start \
 		--redefine-sym _binary_build_filesystem_bin_end=__live_end \
 		--redefine-sym _binary_build_filesystem_bin_size=__live_size
