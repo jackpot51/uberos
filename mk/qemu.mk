@@ -42,7 +42,7 @@ ifeq ($(gdb),yes)
 	QEMUFLAGS+=-s
 endif
 
-WSL_QEMU_DIR=$(shell reg.exe query 'HKLM\Software\QEMU' /v Install_Dir /t REG_SZ 2> NULL | grep '^    Install_Dir' | sed 's/\s*Install_Dir\s*REG_SZ\s*//g')
+WSL_QEMU_DIR=$(shell reg.exe query 'HKLM\Software\QEMU' /v Install_Dir /t REG_SZ 2> /dev/null | grep '^    Install_Dir' | sed 's/\s*Install_Dir\s*REG_SZ\s*//g')
 ifeq ($(WSL_QEMU_DIR),)
 	ifeq ($(UNAME),Linux)
 		ifneq ($(kvm),no)
