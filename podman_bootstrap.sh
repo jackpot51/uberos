@@ -218,7 +218,7 @@ ubuntu()
 	sudo "$2" update
 	echo "Installing required packages..."
 	sudo "$2" install \
-		podman curl git make fuse3 fuse-overlayfs slirp4netns
+		podman curl git make pkg-config fuse3 libfuse3-dev fuse-overlayfs slirp4netns
 	if [ "$1" == "qemu" ]; then
 		if [ -z "$(which qemu-system-x86_64)" ]; then
 			echo "Installing QEMU..."
