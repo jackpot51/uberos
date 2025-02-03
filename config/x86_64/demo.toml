@@ -34,7 +34,7 @@ syobonaction = {}
 
 # Demos
 acid = {}
-nushell = {}
+# nushell = {}
 orbclient = {}
 pixelcannon = {}
 rodioplay = {}
