@@ -21,6 +21,7 @@ git = {}
 gnu-grep = {}
 ripgrep = {}
 sodium = {}
+terminfo = {}
 vim = {}
 
 # Games
@@ -34,7 +35,7 @@ syobonaction = {}
 
 # Demos
 acid = {}
-nushell = {}
+# nushell = {}
 orbclient = {}
 pixelcannon = {}
 rodioplay = {}
