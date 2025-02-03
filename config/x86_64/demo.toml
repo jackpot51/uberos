@@ -21,6 +21,7 @@ git = {}
 gnu-grep = {}
 ripgrep = {}
 sodium = {}
+terminfo = {}
 vim = {}
 
 # Games
