@@ -218,3 +218,4 @@ vttest = {}
 xz = {}
 zerod = {}
 zlib = {}
+libgcc = {}
