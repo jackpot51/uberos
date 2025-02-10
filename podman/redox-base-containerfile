@@ -70,5 +70,5 @@ RUN useradd --create-home --no-log-init --uid _UID_ poduser \
 		zlib1g-dev \
 		zstd \
 		help2man \
-		autoconf2.69
-
+		autoconf2.69 \
+    	patchelf
