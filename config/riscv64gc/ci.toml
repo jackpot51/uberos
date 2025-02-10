@@ -44,5 +44,5 @@ smith = {}
 userutils = {}
 uutils = {}
 vim = {}
-
+libgcc = {}
 #TODO: Add more packages
