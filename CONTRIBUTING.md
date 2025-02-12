@@ -118,6 +118,12 @@ To start the compilation of the default recipes run the command below:
 make all
 ```
 
+In case your operating system does not use SELinux, you must set the `USE_SELINUX` to `0` when calling `make all`, otherwise you might experience errors:
+
+```sh
+make all USE_SELINUX=0
+```
+
 You can find the build system organization and commands on the [Build System](https://doc.redox-os.org/book/build-system-reference.html) page.
 
 ## Developer FAQ
